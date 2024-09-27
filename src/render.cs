@@ -2,13 +2,14 @@
     static void rend(ICanvas c) {
         c.Clear(Color.Black);
 
-        illum.addlight(new Vector2(Window.Width/2,Window.Height/2), Window.Height/4, 1, ColorF.Red, .125f);
-        illum.addlight(new Vector2(Mouse.Position.X, Window.Height/2), Window.Height / 4, 1, ColorF.Green, .125f);
-        illum.addlight(new Vector2(Window.Width-Mouse.Position.X, Window.Height/2), Window.Height / 4, 1, ColorF.Blue, .125f);
+        illum.addlight(Mouse.Position, Window.Height/2, 1, ColorF.Red, 1, false);
+        illum.addlight(new Vector2(Window.Width,Window.Height)-Mouse.Position, Window.Height / 2, 1, ColorF.Green, 1, false);
+
+        illum.addobj(new Vector2(Window.Width/2, Window.Height/16), new Vector2(Window.Width/2+Window.Width/16,Window.Height/8+Window.Height/16), new Vector2(Window.Width/2-Window.Width/16,Window.Height/8+Window.Height/16));
 
         illum.draw(c);
 
-        illum.clearlights();
+        illum.clearscene();
 
         c.Fill(Color.White);
 

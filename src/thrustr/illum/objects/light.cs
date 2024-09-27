@@ -4,4 +4,5 @@
     public float lum;
     public ColorF col;
     public float rnd;
+    public bool clmp;
 }
