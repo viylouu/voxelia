@@ -7,5 +7,9 @@
 
         intro.loadintro();
         intro.playintro();
+
+        Window.SetIcon(Graphics.LoadTexture(@"assets\thrustr\logos\engine small.png"));
+
+        Window.Title = "thrustr engine";
     }
 }
