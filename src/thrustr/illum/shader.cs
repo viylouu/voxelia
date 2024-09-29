@@ -7,6 +7,7 @@
         Vector3 _col = MakeVector3(0,0,0);
 
         for(int i = 0; i < l.Length; i++) {
+            bool inshadow = false;
             float dist = Distance(pos, l[i].pos);
 
             if(dist <= l[i].rad) {
@@ -20,10 +21,23 @@
                     b = Round(b/l[i].rnd)*l[i].rnd;
                 }
 
-                _col += MakeVector3(r,g,b);
+                Vector2 _p = pos;
+
+                for (int j = 0; j < dist; j++) 
+                    if(!inshadow) {
+                        _p += (l[i].pos-_p).Normalized();
+
+                        for (int k = 0; k < objs.Length; k++)
+                            if(!inshadow)
+                                if (intri(_p, objs[k].p1, objs[k].p2, objs[k].p3)) 
+                                { inshadow = true; }
+                    }
+
+                if(!inshadow)
+                    _col += MakeVector3(r,g,b);
             }
         }
-
+        
         col = new ColorF(_col.X,_col.Y,_col.Z);
 
         return col;
@@ -36,6 +50,6 @@
         float area2 = Abs((p2.X - p.X) * (p3.Y - p.Y) - (p3.X - p.X) * (p2.Y - p.Y));
         float area3 = Abs((p3.X - p.X) * (p1.Y - p.Y) - (p1.X - p.X) * (p3.Y - p.Y));
 
-        return area1+area2+area3 > areaOrig;
+        return (area1+area2+area3) == areaOrig;
     }
 }

@@ -8,9 +8,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SimulationFramework" Version="0.3.0-alpha.6" />
-    <PackageReference Include="SimulationFramework.Desktop" Version="0.3.0-alpha.6" />
-    <PackageReference Include="SimulationFramework.OpenGL" Version="0.3.0-alpha.6" />
+    <PackageReference Include="SimulationFramework" Version="0.3.0-alpha.7" />
+    <PackageReference Include="SimulationFramework.Desktop" Version="0.3.0-alpha.7" />
+    <PackageReference Include="SimulationFramework.OpenGL" Version="0.3.0-alpha.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="assets\fonts\font.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\thrustr\audio\introfade.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\thrustr\logos\engine logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\thrustr\logos\sf logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="assets\fonts\" />
+    <Folder Include="src\thrustr\fontie\" />
   </ItemGroup>
 
 </Project>
