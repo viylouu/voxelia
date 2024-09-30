@@ -25,12 +25,12 @@
 
     public static void dointro(ICanvas c, font dfont) {
         byte previntro = introstate;
-        introstate = (byte)m.floor((Time.TotalTime-introstart)/2f);
+        introstate = (byte)math.floor((Time.TotalTime-introstart)/2f);
 
         if(previntro!=introstate && introstate < 3) 
             fadesfx.Play();
 
-        float lerp = m.abs(((Time.TotalTime-introstart)/2f-introstate>=.5f?1:0)-((Time.TotalTime-introstart)/2f-introstate));
+        float lerp = ease.oqnt(math.abs(((Time.TotalTime-introstart)/2f-introstate>=.5f?1:0)-((Time.TotalTime-introstart)/2f-introstate)));
 
         switch(introstate) {
             case 0:
