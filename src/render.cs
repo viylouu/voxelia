@@ -14,6 +14,14 @@
 
         illum.clearscene();*/
 
+        grad.startpos = new Vector2(0, Window.Height);
+        grad.endpos = new Vector2(Window.Width, 0);
+        grad.col1 = ColorF.CornflowerBlue;
+        grad.col2 = ColorF.Chocolate;
+
+        c.Fill(grad);
+        c.DrawRect(0,0,Window.Width,Window.Height);
+
         fontie.rendertext(c, dfont, $"{MathF.Round(1/Time.DeltaTime)} fps", 3,3, ColorF.White);
     }
 }
