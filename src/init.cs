@@ -13,6 +13,9 @@
         Window.Title = "voxelia";
 
         depth = Graphics.CreateDepthMask(640,360);
-        depth.Comparison = Comparison.GreaterThanEqual;
+
+        blocks = new block[1,1,1];
+
+        blocks[0,0,0] = new block() { type = 0 };
     }
 }
