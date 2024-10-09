@@ -1,6 +1,6 @@
 ﻿partial class main {
     static void init() {
-        Simulation.SetFixedResolution(640,360, Color.Black);
+        Simulation.SetFixedResolution(480,270, Color.Black);
 
         dfonttex = Graphics.LoadTexture(@"assets\fonts\font.png");
         dfont = fontie.genfont(dfonttex, " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz");
@@ -14,8 +14,8 @@
 
         depth = Graphics.CreateDepthMask(640,360);
 
-        blocks = new block[1,1,1];
+        r = new();
 
-        blocks[0,0,0] = new block() { type = 0 };
+        genmap();
     }
 }
