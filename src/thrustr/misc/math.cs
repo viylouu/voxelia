@@ -27,4 +27,6 @@
     public static float sqr(float a) => a*a;
     /// <summary>calculates a number to the power of 3</summary>
     public static float cbe(float a) => a*a*a;
+    /// <summary>converts a value in degrees to a value in radians</summary>
+    public static float torad(float a) => a*(pi/180f);
 }
