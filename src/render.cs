@@ -16,12 +16,22 @@ partial class main {
 
         //  render
 
+        render3D(c, 0);
+
+        fontie.rendertext(c, dfont, $"{MathF.Round(1/Time.DeltaTime)} fps", 3,3, ColorF.White);
+    }
+
+    static void render3D(ICanvas c, int rendermode) {
         depth.Clear(1);
 
         c.Mask(depth);
         c.WriteMask(depth);
 
-        dfrag.cam = cam;
+        dfrag.rendermode = rendermode;
+
+        dfrag.cam = -cam;
+
+        dfrag.sun = new Vector3(1,-1,1).Normalized();
 
         for(int x = 0; x < blocks.GetLength(0); x++)
             for(int y = 0; y < blocks.GetLength(1); y++)
@@ -30,6 +40,7 @@ partial class main {
             if(renderblock(x,y,z)) {
                 dfrag.tex = blockdats[blocks[x,y,z].type].tex;
         
+                dvert.cubepos = new Vector3(x,y,z);
                 dvert.model = Matrix4x4.CreateTranslation(x,y,z);
                 dvert.view = Matrix4x4.CreateTranslation(cam) * Matrix4x4.CreateRotationY(math.torad(pitch)) * Matrix4x4.CreateRotationX(math.torad(yaw));
                 dvert.proj = Matrix4x4.CreatePerspectiveFieldOfViewLeftHanded(math.torad(fov),c.Width/(float)c.Height,.1f,100f);
@@ -37,8 +48,6 @@ partial class main {
                 c.Fill(dfrag,dvert);
                 c.DrawGeometry(cube);
             }
-
-        fontie.rendertext(c, dfont, $"{MathF.Round(1/Time.DeltaTime)} fps", 3,3, ColorF.White);
     }
 
     static bool renderblock(int x, int y, int z) { 

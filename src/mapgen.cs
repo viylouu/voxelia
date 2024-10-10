@@ -4,7 +4,7 @@
         noise.SetSeed(r.Next(int.MinValue,int.MaxValue));
         noise.SetFrequency(.05f);
 
-        blocks = new block[16,16,16];
+        blocks = new block[24,24,24];
 
         for(int x = 0; x < blocks.GetLength(0); x++)
             for(int y = 0; y < blocks.GetLength(1); y++)

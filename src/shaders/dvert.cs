@@ -6,6 +6,8 @@
     public Matrix4x4 view;
     public Matrix4x4 proj;
 
+    public Vector3 cubepos;
+
     [VertexShaderOutput]
     Vector2 uv;
     [VertexShaderOutput]
@@ -16,7 +18,7 @@
     [UseClipSpace]
     public override Vector4 GetVertexPosition() {
         norm = _vert.norm;
-        vpos = _vert.pos;
+        vpos = _vert.pos+cubepos;
 
         Vector4 res = new(_vert.pos, 1);
         res = Vector4.Transform(res, model);
