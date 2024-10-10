@@ -12,9 +12,11 @@
 
         Window.Title = "voxelia";
 
-        depth = Graphics.CreateDepthMask(640,360);
+        depth = Graphics.CreateDepthMask(480,270);
 
         r = new();
+
+        cube = Graphics.CreateGeometry<vert>(cubeverts, cubeinds);
 
         genmap();
     }

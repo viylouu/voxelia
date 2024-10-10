@@ -21,19 +21,21 @@ partial class main {
         c.Mask(depth);
         c.WriteMask(depth);
 
+        dfrag.cam = cam;
+
         for(int x = 0; x < blocks.GetLength(0); x++)
             for(int y = 0; y < blocks.GetLength(1); y++)
             for(int z = 0; z < blocks.GetLength(2); z++)
             if(blocks[x,y,z].type!=0)
             if(renderblock(x,y,z)) {
                 dfrag.tex = blockdats[blocks[x,y,z].type].tex;
-
+        
                 dvert.model = Matrix4x4.CreateTranslation(x,y,z);
                 dvert.view = Matrix4x4.CreateTranslation(cam) * Matrix4x4.CreateRotationY(math.torad(pitch)) * Matrix4x4.CreateRotationX(math.torad(yaw));
                 dvert.proj = Matrix4x4.CreatePerspectiveFieldOfViewLeftHanded(math.torad(fov),c.Width/(float)c.Height,.1f,100f);
 
                 c.Fill(dfrag,dvert);
-                c.DrawTriangles<vert>(cube);
+                c.DrawGeometry(cube);
             }
 
         fontie.rendertext(c, dfont, $"{MathF.Round(1/Time.DeltaTime)} fps", 3,3, ColorF.White);
@@ -43,22 +45,22 @@ partial class main {
         if(x==0||y==0||z==0||x==blocks.GetLength(0)-1||y==blocks.GetLength(1)-1||z==blocks.GetLength(2)-1)
             return true;
 
-        if(blocks[x-1,y,z].type==0)
+        if(!blockdats[blocks[x-1,y,z].type].opaque)
             return true;
 
-        if(blocks[x+1,y,z].type==0)
+        if(!blockdats[blocks[x+1,y,z].type].opaque)
             return true;
 
-        if(blocks[x,y-1,z].type==0)
+        if(!blockdats[blocks[x,y-1,z].type].opaque)
             return true;
 
-        if(blocks[x,y+1,z].type==0)
+        if(!blockdats[blocks[x,y+1,z].type].opaque)
             return true;
 
-        if(blocks[x,y,z-1].type==0)
+        if(!blockdats[blocks[x,y,z-1].type].opaque)
             return true;
 
-        if(blocks[x,y,z+1].type==0)
+        if(!blockdats[blocks[x,y,z+1].type].opaque)
             return true;
 
         return false;
